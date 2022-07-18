@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <link rel="stylesheet" href="styele1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  </head>
+  <body  >
+    <div class="container-fluid">
+      <div class="row">
+      
+      <div class="col vh-100  div_edit">
+          <div class=" align-self-center div1_edit" >
+            <img src="pngegg.png" class=" hero-img" alt="Cinque Terre">
+            
+            
+          </div>
+          <div class=" mt-5 text-center div2_edit ">
+            <button type="button"  class="start-game-btn"data-bs-toggle="modal" data-bs-target="#exampleModal1  " onclick="selectXorO();" >Single Player </button>
+            <button type="button"  class="start-game-btn w-15"data-bs-toggle="modal" data-bs-target="#exampleModal">Multiplayer </button>
+        </div>
+        </div>
+
+      </div>
+      </div>
+  <!--model of mutipalayer setup-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Player Names</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+               
+                <img src="xpngegg.png" class="imge-edit">
+
+              <input type="text" name="playerX"class="input-edit" id="playerXId" oninput="checkx();"  required>
+              <span class="floating-label"> Name</span>
+            </div>
+            <div class="mb-3">
+             
+              <img src="opngegg.png" class="imge-edit">
+              <input type="text " class="input-edit" name="playerO" id="playerOId" required>
+              <span class="floating-label1"> Name</span>
+            </div>
+         
+            </div>
+            <div class="modal-footer">
+
+              <button type="submit" class="   text-center   dismiss-btn" onclick="checkfields(); saveData();">Start Game</button>
+            </div>
+            
+          </div>
+        </div>
+        <div id="snackbar">Please Enter Players Name..</div>
+      </div>
+      <!-- model for single Player setup -->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Choose your Symbol</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3">
+                <div class="col-md-12">
+                  <div class="row d-flex justify-content-between  ">
+                    <!-- <h5>Choose your Symbol</h5> -->
+                    <div class="col-md-6 form-check ">
+                      <img src="xpngegg.png" class="s-image-edit" id="imageX">
+                      <img src="opngegg.png" class="s-image-edit" id="imageO" >
+                    </div>
+                    
+                   
+                    
+                </div>
+                </div>
+
+                <!-- <div class="col-md-12 ">
+                <div class="row d-flex justify-content-evenly  ">
+                  <h5>Choose your turn</h5>
+                  <div class="col-md-6 form-check ">
+                    <input class="form-check-input mx-3" type="radio" name="exampleRadios" id="first" value="option3" oninput="input1();" checked>
+                    <label class="form-check-label" for="exampleRadios3">
+                      First
+                    </label>
+                  </div>
+                  <div class="col-md-6  form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Second" oninput="input2();" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                      Second 
+                    </label>
+                  </div>
+              </div>
+              </div>
+               -->
+                
+               
+                
+               
+
+              </form>
+            
+            </div>
+            <div class="modal-footer">
+              <div class=" d-flex flex-row-reverse   ">
+                <button class="btn btn-primary text-right mx-5" type="button" onclick="window.location.href='singleTTT.html';">Start Game</button>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      
+  </body> 
+   <script src="start.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script>
+     
+      function checkfields(){
+        if(document.getElementById("playerXId").value!="" && document.getElementById("playerOId").value!="" ){
+          gamePage();
+        }else {
+          msg();
+
+        }
+
+      }
+
+      function gamePage(){
+        location.replace("TTT.html");
+      }
+      function game(){
+
+       location.replace("TTT.html");
+      }
+
+    function saveData (){
+    const Xname = document.getElementById('playerXId').value;
+    const Oname = document.getElementById('playerOId').value; 
+
+    localStorage.setItem("playerX",Xname);
+    localStorage.setItem("playerO",Oname);
+    console.log(Xname);
+    console.log(Oname);
+
+     }
+
+    function msg() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    </script>
+  </body>
+</html>
